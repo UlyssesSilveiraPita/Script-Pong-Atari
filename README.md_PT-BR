@@ -1,0 +1,126 @@
+Pong Réplica (Unity)
+
+Esta é uma recriação do clássico Atari Pong, desenvolvida no Unity com recursos modernos como física suave, IA inimiga e um sistema simples de pontuação.
+
+🎮 Funcionalidades
+
+Raquete do jogador controlada pelo mouse.
+
+Raquete inimiga que segue a bola com IA básica.
+
+Física da bola com mecânica de quique.
+
+Direção da bola aleatória a cada reinício.
+
+Sistema de pontuação com exibição na UI.
+
+Reinício do jogo após a marcação de ponto.
+
+🛠️ Configuração do Projeto
+
+Versão do Unity: Desenvolvido no Unity 6.1 (pode rodar em versões mais recentes).
+
+Configuração da Cena:
+
+Duas raquetes (Jogador e Inimigo).
+
+Bola com Rigidbody2D e Collider2D.
+
+Paredes e zonas de pontuação com colliders e tags.
+
+Elementos de texto na UI usando TextMeshPro para exibir a pontuação.
+
+Main Camera configurada como Orthographic.
+
+📂 Visão Geral dos Scripts
+
+Core.cs
+
+Atua como o controlador central do jogo.
+
+Contém referências ao GameManager, Ball, PlayerController e Enemy.
+
+Garante que todos os sistemas sejam habilitados no início.
+
+public class Core : MonoBehaviour
+{
+    public static Core Instance;
+    [SerializeField] public GameManager _gameManager;
+    [SerializeField] public ball _ball;
+    [SerializeField] public PlayerController _playerController;
+    [SerializeField] public Enemy _enemy;
+
+    void Awake()
+    {
+        _gameManager.enabled = true;
+        _ball.enabled = true;
+        _playerController.enabled = true;
+        _enemy.enabled = true;
+    }
+}
+
+
+GameManager.cs
+
+Gerencia o sistema de pontuação.
+
+Atualiza a UI com os pontos do jogador e do computador.
+
+Oculta o cursor do mouse durante o jogo.
+
+PlayerController.cs
+
+A raquete do jogador é controlada pela posição do mouse.
+
+Movimento suave utilizando física (Rigidbody2D.MovePosition).
+
+Enemy.cs
+
+A raquete inimiga segue a posição y da bola.
+
+Adiciona um pouco de aleatoriedade para evitar previsão perfeita.
+
+Move usando física para manter consistência.
+
+ball.cs
+
+Controla o movimento e colisões da bola.
+
+Mantém velocidade constante (linearVelocity.normalized * speedBall).
+
+Detecta colisões com raquetes e paredes.
+
+Atualiza a pontuação quando a bola atinge as zonas de score (jogador ou inimigo).
+
+Reseta a posição com direção aleatória após cada ponto.
+
+🎯 Como Funciona
+
+No início, a bola surge no centro com uma direção aleatória.
+
+O jogador movimenta sua raquete com o mouse.
+
+A IA inimiga segue o eixo y da bola com velocidade limitada.
+
+Quando a bola colide com uma raquete, sua direção muda com base no ponto de impacto.
+
+Se a bola atravessa uma zona de pontuação:
+
+Um ponto é marcado.
+
+A bola é reiniciada após um pequeno atraso.
+
+🚀 Próximos Passos / Possíveis Melhorias
+
+Adicionar níveis de dificuldade (escala de velocidade da IA).
+
+Adicionar efeitos sonoros para colisões e pontuações.
+
+Criar menu inicial e menu de pausa na UI.
+
+Suporte para 2 jogadores (teclado ou controle).
+
+Efeitos de pós-processamento para melhorar os visuais.
+
+📷 Prévia
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5652a7bf-0d5e-4964-8d20-36fdef73501b" />
